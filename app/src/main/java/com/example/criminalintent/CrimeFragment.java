@@ -14,9 +14,15 @@ import android.widget.RadioGroup;
 
 import androidx.fragment.app.Fragment;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.util.Date;
+import java.util.Locale;
+
 public class CrimeFragment extends Fragment {
     private Crime mCrime;
     private EditText mTitleField;
+    private EditText mDetails;
     private Button mDateButton;
     private CheckBox mSolvedCheckBox;
 
@@ -48,8 +54,28 @@ public class CrimeFragment extends Fragment {
             }
         });
 
+        mDetails = (EditText)v.findViewById(R.id.crime_details);
+        mDetails.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mCrime.setTitle(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         mDateButton = (Button)v.findViewById(R.id.crime_date);
-        mDateButton.setText(mCrime.getDate().toString());
+        Date dateTemp = mCrime.getDate();
+        DateFormat df = DateFormat.getDateInstance(DateFormat.FULL, Locale.KOREA);
+        mDateButton.setText(df.format(dateTemp));
         mDateButton.setEnabled(false);
 
         mSolvedCheckBox = (CheckBox)v.findViewById(R.id.crime_solved);
