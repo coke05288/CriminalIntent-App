@@ -23,10 +23,9 @@ public class CrimeLab {
     //생성자
     private CrimeLab(Context context) {
         mCrimes = new ArrayList<>();
-        for(int i =0; i< 100; i++){
+        for(int i =0; i< 5; i++){
             Crime crime = new Crime();
             crime.setTitle("범죄 #" + i);
-            crime.setSolved(i%2 == 0); // 짝수번째 요소 true값 임의 설정.
             mCrimes.add(crime);
         }
     }

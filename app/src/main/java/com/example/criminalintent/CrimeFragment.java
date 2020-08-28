@@ -69,6 +69,7 @@ public class CrimeFragment extends Fragment {
         });
 
         mDetails = (EditText)v.findViewById(R.id.crime_details);
+        mDetails.setText(mCrime.getDetail());
         mDetails.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -77,7 +78,7 @@ public class CrimeFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mCrime.setTitle(s.toString());
+                mCrime.setDetail(s.toString());
             }
 
             @Override
